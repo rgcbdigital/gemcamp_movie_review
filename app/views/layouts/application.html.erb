@@ -7,10 +7,26 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module' %>
   </head>
 
   <body>
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Movies', movies_path %></li>
+      <% if session[:user_id] %>
+        <li><%= link_to 'Add New Movie', new_movie_path %></li>
+        <li>Welcome, <%= session[:username] %>!</li>
+
+      <% else %>
+        <li><%= link_to 'Login', login_path %></li>
+        <li><%= link_to 'Sign Up', signup_path %></li>
+      <% end %>
+    </ul>
+  </nav>
+
+
   <%= notice %>
   <%= alert %>
     <%= yield %>

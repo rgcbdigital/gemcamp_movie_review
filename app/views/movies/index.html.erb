@@ -1,0 +1,24 @@
+<h1>Movies</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= movie.title %></td>
+      <td>
+        <%= link_to 'Edit', edit_movie_path(movie), class: 'btn btn-primary btn-sm' %> |
+        <%= link_to 'Delete', movie_path(movie), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add New Movie', new_movie_path, class: 'btn btn-success' %>
+

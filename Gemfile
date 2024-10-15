@@ -5,6 +5,9 @@ ruby "3.0.4"
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8", ">= 7.0.8.4"
 

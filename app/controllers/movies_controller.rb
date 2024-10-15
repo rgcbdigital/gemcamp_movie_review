@@ -1,5 +1,9 @@
-# app/controllers/movies_controller.rb
 class MoviesController < ApplicationController
+  def index
+    @movies = Movie.page(params[:page])
+    session[:return_to] = request.fullpath
+  end
+
   def new
     @movie = Movie.new
   end
@@ -12,6 +16,31 @@ class MoviesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @movie = Movie.find(params[:id])
+  end
+
+  def update
+    @movie = Movie.find(params[:id])
+    if @movie.update(movie_params)
+      flash[:notice] = "Movie was successfully updated."
+      redirect_to session[:return_to] || root_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    flash[:notice] = "Movie was successfully deleted."
+    redirect_to movies_path
+  end
+
+  def show
+    @movie = Movie.find(params[:id])
   end
 
   private
