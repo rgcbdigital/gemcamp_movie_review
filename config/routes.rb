@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
+  resources :movies
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   get 'login', to: 'sessions#new'

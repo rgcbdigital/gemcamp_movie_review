@@ -1,5 +1,29 @@
+<!-- app/views/home/index.html.erb -->
 <h1>Welcome to the Home Page</h1>
 <p>
   <%= link_to 'Sign Up', signup_path %> |
   <%= link_to 'Log In', login_path %>
 </p>
+
+<% if session[:user_id] %>
+  <p>
+    <%= link_to 'Add Movie', new_movie_path %>
+  </p>
+<% end %>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<h2>Movies</h2>
+<ul>
+  <% @movies.each do |movie| %>
+    <li>
+      <%= link_to movie.title, movie_path(movie) %>
+      <p><%= movie.blurb %></p>
+      <p>Released on: <%= movie.date_released %></p>
+      <p>Country of Origin: <%= movie.country_of_origin %></p>
+      <p>Showing from: <%= movie.showing_start %> to <%= movie.showing_end %></p>
+    </li>
+  <% end %>
+</ul>
