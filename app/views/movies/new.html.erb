@@ -25,6 +25,10 @@
     <%= form.datetime_field :showing_end %>
   </div>
   <div>
+    <%= form.label :genres %>
+    <%= form.collection_select :genre_ids, Genre.all, :id, :name, {}, { multiple: true } %>
+  </div>
+  <div>
     <%= form.submit "Create Movie" %>
   </div>
 <% end %>
